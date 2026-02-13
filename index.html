@@ -14,139 +14,48 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ─── 3D Logo ─── */
-    .logo-3d {
-      position: relative;
-      display: inline-flex;
+    /* ─── Brand Logo ─── */
+    .brand-logo {
+      display: flex;
       align-items: center;
       gap: 12px;
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      perspective: 600px;
+      text-decoration: none;
+      position: relative;
       z-index: 1002;
     }
 
-    .logo-cube {
-      width: 42px;
-      height: 42px;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: cube-spin 8s ease-in-out infinite;
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .logo-cube .face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
+    .brand-logo:hover .logo-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .brand-text {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      font-weight: 800;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
       color: #fff;
-      backface-visibility: hidden;
+      letter-spacing: -0.03em;
     }
 
-    .logo-cube .front {
-      background: linear-gradient(135deg, #7c5cfc, #5a3cd4);
-      transform: translateZ(21px);
-      box-shadow: 0 0 25px rgba(124, 92, 252, 0.4);
-    }
-
-    .logo-cube .back {
-      background: linear-gradient(135deg, #ff6b9d, #e74c8a);
-      transform: rotateY(180deg) translateZ(21px);
-    }
-
-    .logo-cube .right {
-      background: linear-gradient(135deg, #00d4aa, #00b894);
-      transform: rotateY(90deg) translateZ(21px);
-    }
-
-    .logo-cube .left {
-      background: linear-gradient(135deg, #ffd866, #f0c040);
-      transform: rotateY(-90deg) translateZ(21px);
-    }
-
-    .logo-cube .top {
-      background: linear-gradient(135deg, #7c5cfc, #00d4aa);
-      transform: rotateX(90deg) translateZ(21px);
-    }
-
-    .logo-cube .bottom {
-      background: linear-gradient(135deg, #ff6b9d, #7c5cfc);
-      transform: rotateX(-90deg) translateZ(21px);
-    }
-
-    @keyframes cube-spin {
-      0% {
-        transform: rotateX(0) rotateY(0);
-      }
-
-      25% {
-        transform: rotateX(10deg) rotateY(90deg);
-      }
-
-      50% {
-        transform: rotateX(-5deg) rotateY(180deg);
-      }
-
-      75% {
-        transform: rotateX(8deg) rotateY(270deg);
-      }
-
-      100% {
-        transform: rotateX(0) rotateY(360deg);
-      }
-    }
-
-    .logo-text {
-      position: relative;
-    }
-
-    .logo-text .main {
-      background: linear-gradient(135deg, #fff, #c4b5fd);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: none;
-    }
-
-    .logo-text .sub {
-      font-size: 0.55em;
-      font-weight: 500;
-      color: var(--text-dim);
-      display: block;
-      letter-spacing: 0.15em;
+    .brand-solutions {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-top: -2px;
-    }
-
-    .logo-glow {
-      position: absolute;
-      inset: -8px;
-      border-radius: 16px;
-      background: radial-gradient(circle, rgba(124, 92, 252, 0.15), transparent 70%);
-      z-index: -1;
-      animation: logo-breathe 4s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes logo-breathe {
-
-      0%,
-      100% {
-        opacity: 0.5;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scale(1.08);
-      }
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 2px;
     }
   </style>
 </head>
@@ -162,17 +71,31 @@
   <!-- ═══ NAV ═══ -->
   <nav class="nav">
     <div class="container nav-inner">
-      <a href="#" class="logo-3d">
-        <div class="logo-cube">
-          <div class="face front">⟐</div>
-          <div class="face back">AI</div>
-          <div class="face right">✦</div>
-          <div class="face left">◈</div>
-          <div class="face top">⬡</div>
-          <div class="face bottom">⟐</div>
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="40" x2="40" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#7c5cfc" />
+                <stop offset="50%" stop-color="#22d3ee" />
+                <stop offset="100%" stop-color="#00ffcc" />
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                <feMerge>
+                  <feMergeNode in="coloredBlur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <path d="M20 4L4 36H16L20 20L24 36H36L20 4Z" fill="url(#logo-grad)" filter="url(#glow)" opacity="0.9" />
+            <path d="M20 12L12 32H28L20 12Z" fill="#fff" opacity="0.8" style="mix-blend-mode: overlay;" />
+          </svg>
         </div>
-        <div class="logo-text"><span class="main">Pinnacle AI</span><span class="sub">Solutions</span></div>
-        <div class="logo-glow"></div>
+        <div class="brand-text">
+          <span class="brand-name">Pinnacle</span>
+          <span class="brand-solutions">AI Solutions</span>
+        </div>
       </a>
 
       <!-- DESKTOP NAV -->
