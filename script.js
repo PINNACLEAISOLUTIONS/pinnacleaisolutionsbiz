@@ -15,11 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
 
-    // ─── Mobile menu ───
+    // ─── Premium Mobile Menu ───
     const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    hamburger?.addEventListener('click', () => navLinks.classList.toggle('active'));
-    document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
+    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+    const mobileItems = document.querySelectorAll('.mobile-item');
+    const body = document.body;
+
+    hamburger?.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileOverlay?.classList.toggle('active');
+        body.style.overflow = mobileOverlay?.classList.contains('active') ? 'hidden' : '';
+    });
+
+    mobileItems.forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger?.classList.remove('active');
+            mobileOverlay?.classList.remove('active');
+            body.style.overflow = '';
+        });
+    });
 
     // ─── Scroll reveal ───
     const observer = new IntersectionObserver(entries => {
@@ -59,16 +73,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
 
-    // ─── Simple Particles ───
-    const canvas = document.getElementById('particles');
-    if (canvas) {
+    // ─── Particles System (Shared logic for Main + Mobile) ───
+    const initParticles = (canvasId, count = 60, connectionDist = 120) => {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
         let w, h, particles = [];
-        const resize = () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; };
-        resize(); addEventListener('resize', resize);
-        for (let i = 0; i < 60; i++) {
+
+        // Resize observer for better support
+        const resizeObserver = new ResizeObserver(() => {
+            w = canvas.width = canvas.offsetWidth;
+            h = canvas.height = canvas.offsetHeight;
+        });
+        resizeObserver.observe(canvas.parentElement || document.body);
+        // Initial size
+        w = canvas.width = innerWidth;
+        h = canvas.height = innerHeight;
+
+        for (let i = 0; i < count; i++) {
             particles.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.5 + 0.5, dx: (Math.random() - 0.5) * 0.3, dy: (Math.random() - 0.5) * 0.3, o: Math.random() * 0.4 + 0.1 });
         }
+
         (function draw() {
             ctx.clearRect(0, 0, w, h);
             particles.forEach(p => {
@@ -83,15 +108,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
+                    if (dist < connectionDist) {
                         ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(124,92,252,${0.06 * (1 - dist / 120)})`; ctx.stroke();
+                        ctx.strokeStyle = `rgba(124,92,252,${0.06 * (1 - dist / connectionDist)})`; ctx.stroke();
                     }
                 }
             }
             requestAnimationFrame(draw);
         })();
     }
+
+    // Initialize main particles
+    initParticles('particles');
 
     // ─── Form ───
     const form = document.getElementById('contact-form');

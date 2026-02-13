@@ -7,9 +7,6 @@
   <title>Pinnacle AI Solutions | Premium Web Design, AI Chatbots & SEO</title>
   <meta name="description"
     content="We build stunning websites, intelligent AI chatbots, and SEO strategies that dominate search rankings.">
-  <meta property="og:title" content="Pinnacle AI Solutions | Web Design, Chatbots & SEO">
-  <meta property="og:description"
-    content="Premium web design, AI chatbot integration, and SEO services that drive real results.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -28,6 +25,7 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       perspective: 600px;
+      z-index: 1002;
     }
 
     .logo-cube {
@@ -173,13 +171,12 @@
           <div class="face top">⬡</div>
           <div class="face bottom">⟐</div>
         </div>
-        <div class="logo-text">
-          <span class="main">Pinnacle AI</span>
-          <span class="sub">Solutions</span>
-        </div>
+        <div class="logo-text"><span class="main">Pinnacle AI</span><span class="sub">Solutions</span></div>
         <div class="logo-glow"></div>
       </a>
-      <div class="nav-links">
+
+      <!-- DESKTOP NAV -->
+      <div class="nav-links desktop-only">
         <a href="#services" class="nav-link">Services</a>
         <a href="#process" class="nav-link">Process</a>
         <a href="#work" class="nav-link">Work</a>
@@ -187,9 +184,54 @@
         <a href="#testimonials" class="nav-link">Reviews</a>
         <a href="#contact" class="btn btn-primary nav-cta">Get Free Quote</a>
       </div>
+
       <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
+
+  <!-- ═══ MOBILE MENU (New Premium Design) ═══ -->
+  <div class="mobile-menu-overlay">
+    <div class="mobile-menu-particles" id="mobile-particles"></div>
+    <div class="mobile-menu-content">
+
+      <div class="mobile-group">
+        <div class="mobile-label">MENU</div>
+        <a href="#services" class="mobile-item active">
+          <div class="mobile-item-border"></div>
+          <span class="mobile-item-text">Explore Services</span>
+        </a>
+        <a href="#process" class="mobile-item">
+          <div class="mobile-item-border"></div>
+          <span class="mobile-item-text">Our Process</span>
+        </a>
+        <a href="#work" class="mobile-item">
+          <div class="mobile-item-border"></div>
+          <span class="mobile-item-text">Portfolio</span>
+        </a>
+      </div>
+
+      <div class="mobile-group">
+        <div class="mobile-label">RESOURCES</div>
+        <a href="#pricing" class="mobile-item">
+          <div class="mobile-item-border"></div>
+          <span class="mobile-item-text">Investment Pricing</span>
+        </a>
+        <a href="#testimonials" class="mobile-item">
+          <div class="mobile-item-border"></div>
+          <span class="mobile-item-text">Client Success Stories</span>
+        </a>
+        <a href="#contact" class="mobile-item">
+          <div class="mobile-item-border"></div>
+          <span class="mobile-item-text">Start Your Project</span>
+        </a>
+      </div>
+
+      <div class="mobile-bottom">
+        <a href="#contact" class="btn btn-mobile-cta">Contact Pinnacle AI</a>
+      </div>
+
+    </div>
+  </div>
 
   <!-- ═══ HERO ═══ -->
   <section class="hero" id="home">
