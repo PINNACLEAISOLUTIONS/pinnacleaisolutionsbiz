@@ -43,16 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── Typing code animation ───
     const lines = [
-        { n: '01', c: '<span class="comment">// Building your digital presence</span>' },
-        { n: '02', c: '<span class="tag">&lt;website&gt;</span>' },
-        { n: '03', c: '  <span class="attr">design</span>: <span class="val">"stunning"</span>,' },
-        { n: '04', c: '  <span class="attr">seo</span>: <span class="val">"optimized"</span>,' },
-        { n: '05', c: '  <span class="attr">chatbot</span>: <span class="val">"intelligent"</span>,' },
-        { n: '06', c: '  <span class="attr">conversion</span>: <span class="val">"maximized"</span>' },
-        { n: '07', c: '<span class="tag">&lt;/website&gt;</span>' },
-        { n: '08', c: '' },
-        { n: '09', c: '<span class="comment">// Results that speak for themselves</span>' },
-        { n: '10', c: '<span class="tag">deploy</span>(<span class="val">"production"</span>);<span class="typing-cursor"></span>' },
+        { n: '01', c: '<span class="comment">// Professional Web Solutions</span>' },
+        { n: '02', c: 'const site = new PinnacleAI();' },
+        { n: '03', c: 'site.optimize({ quality: "high" });' },
+        { n: '04', c: 'site.deploy();' },
     ];
     const cp = document.getElementById('code-preview');
     if (cp) {
