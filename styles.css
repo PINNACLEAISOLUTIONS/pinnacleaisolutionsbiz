@@ -7,9 +7,6 @@
   --bg2: #0c0b18;
   --surface: #100f1f;
   --surface2: #16152a;
-  --card-web: rgba(99, 102, 241, 0.06);
-  --card-chat: rgba(0, 212, 170, 0.06);
-  --card-seo: rgba(255, 107, 157, 0.06);
   --border: rgba(255, 255, 255, 0.06);
   --border-hover: rgba(255, 255, 255, 0.14);
   --text: #e4e4ed;
@@ -92,12 +89,17 @@ h4 {
 }
 
 h1 {
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
-  text-shadow: 0 0 40px rgba(124, 92, 252, 0.15);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  text-shadow: 0 4px 30px rgba(124, 92, 252, 0.3);
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  margin-bottom: 20px;
+  color: #fff;
 }
 
 h3 {
@@ -156,7 +158,7 @@ a {
 
 .section-label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--accent);
   letter-spacing: 0.12em;
@@ -165,36 +167,55 @@ a {
 }
 
 /* ─── Background Variants ─── */
-/* Hero has its own bg */
-/* Service section: Very subtle diag gradient */
+/* Hero has its own bg in index.html/css below */
+
+/* Service section: Dark Purple tint + subtle border top */
 #services {
-  background: linear-gradient(160deg, #0a0914 0%, #06050e 100%);
+  background: linear-gradient(180deg, #0b0a16 0%, #131125 100%);
+  border-top: 1px solid rgba(124, 92, 252, 0.05);
 }
 
-/* Process: Grid pattern */
+/* Process: Very dark black with explicit grid pattern */
 .process-section {
-  background-color: #080712;
-  background-image: radial-gradient(rgba(124, 92, 252, 0.07) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Work: Deep accent glow */
-#work {
-  background: radial-gradient(circle at 50% 0%, rgba(16, 15, 31, 1) 0%, rgba(6, 5, 14, 1) 100%);
-}
-
-/* Pricing: Distinct rich surface */
-.pricing-section {
-  background-color: #0b0a16;
+  background-color: #050505;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
   border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Work: Spotlight radial gradient (Dark Teal/Blue hint) */
+#work {
+  background: radial-gradient(circle at 50% 0%, rgba(20, 18, 45, 1) 0%, #06050e 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-/* Testimonials: Dotted pattern inverse */
+/* Pricing: Distinct rich surface (Dark Navy/Purple) */
+.pricing-section {
+  background: linear-gradient(135deg, #0e0d1d 0%, #090810 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  position: relative;
+}
+
+.pricing-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.08), transparent 40%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Testimonials: Dark with dotted pattern */
 #testimonials {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-color: #06050e;
+  background-color: #08070c;
+  background-image: radial-gradient(rgba(124, 92, 252, 0.1) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
+
+/* Contact: Simple dark to focus on footer */
+.contact-section {
+  background: var(--surface);
 }
 
 /* ─── Buttons ─── */
@@ -739,7 +760,7 @@ a {
   }
 }
 
-/* ─── Services — COLORED CARDS ─── */
+/* ─── Services Cards ─── */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
